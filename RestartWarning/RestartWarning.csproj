@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BepInEx" Version="5.4.12" />
+    <PackageReference Include="BepInEx" Version="5.4.2105" />
   </ItemGroup>
 
   <ItemGroup>
