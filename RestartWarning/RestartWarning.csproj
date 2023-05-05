@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>RestartWarning</AssemblyName>
+    <RootNamespace>RestartWarning</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx" Version="5.4.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Path\To\Valheim_Data\Managed\Assembly-CSharp.dll" />
+    <!-- Replace the above path with the path to your Valheim assembly file -->
+  </ItemGroup>
+
+</Project>
