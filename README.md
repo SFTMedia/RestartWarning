@@ -1,2 +1,2 @@
 # RestartWarning
-Sends a warning about upcoming restart and saves the world for Valheim.
+Sends a warning about upcoming restart for Valheim and saves the world.
