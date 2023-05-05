@@ -1,28 +1,56 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build and Release
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+        dotnet-version: '5.0.x'
+
+    - name: Cache BepInEx dependencies
+      uses: actions/cache@v2
+      with:
+        path: BepInEx
+        key: bepinex-dependencies
+        restore-keys: |
+          bepinex-dependencies-
+
+    - name: Build plugin
+      run: dotnet build --configuration Release
+
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0
+        release_name: Release v1.0
+        draft: false
+        prerelease: false
+
+    - name: Upload plugin artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: RestartWarning
+        path: bin/Release/netstandard2.0/RestartWarning.dll
+
+    - name: Attach plugin to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/Release/netstandard2.0/RestartWarning.dll
+        asset_name: RestartWarning.dll
+        asset_content_type: application/octet-stream
