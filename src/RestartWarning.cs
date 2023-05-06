@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RestartWarning
 {
-    [BepInPlugin("com.bluetigeresw.RestartWarning", "Restart Warning", "1.0.0")]
+    [BepInPlugin("com.bluetigeresw.RestartWarning", "Restart Warning", "1.0.1")]
     public class RestartWarning : BaseUnityPlugin
     {
         private const string MESSAGE = "[RestartWarning] Server will restart in 5 minutes! Saving world...";
