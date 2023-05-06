@@ -6,6 +6,7 @@
     <AssemblyName>RestartWarning</AssemblyName>
     <RootNamespace>RestartWarning</RootNamespace>
     <OutputType>Library</OutputType>
+    <OutputPath>bin\Release\</OutputPath>
     <Optimize>true</Optimize>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
