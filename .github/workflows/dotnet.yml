@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: RestartWarning
-        path: bin/Release/net48/RestartWarning.dll
+        path: src/bin/Release/net48/RestartWarning.dll
 
     - name: Attach plugin to release
       uses: actions/upload-release-asset@v1
@@ -51,6 +51,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: bin/Release/net48/RestartWarning.dll
+        asset_path: src/bin/Release/net48/RestartWarning.dll
         asset_name: RestartWarning.dll
         asset_content_type: application/octet-stream
